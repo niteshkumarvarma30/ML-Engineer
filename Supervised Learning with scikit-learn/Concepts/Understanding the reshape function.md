@@ -92,3 +92,6 @@ To keep Scikit-Learn happy and ensure `y` is 1D, just use single brackets when s
 # CORRECT: This keeps y as a 1D Series/Array
 y = churn_df["churn_status"].values
 ```
+
+### When you DO NOT need to reshape
+Because you are selecting two columns (`[["account_length", "customer_service_calls"]]`), pandas naturally keeps the data as a 2-Dimensional table. When you add `.values`, it remains a 2D NumPy array (rows and columns), so no `.reshape()` is needed at all. Scikit-Learn will accept it perfectly as is.
