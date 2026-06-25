@@ -3,6 +3,8 @@
 ## 1. The classification challenge
 Previously, we learned that supervised learning uses labels. Let's discuss how we can build a classification model, or classifier, to predict the labels of unseen data.
 
+### Note : KNN is a supervised Learning. so we first train on labelled data and the test on Unseen Data
+
 ## 2. Classifying labels of unseen data
 There are four steps. First, we build a classifier, which learns from the labeled data we pass to it. We then pass it unlabeled data as input, and have it predict labels for this unseen data. As the classifier learns from the labeled data, we call this the training data.
 
