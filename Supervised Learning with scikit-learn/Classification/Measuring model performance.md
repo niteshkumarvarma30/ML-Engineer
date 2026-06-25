@@ -88,7 +88,7 @@ To understand Accuracy in classification, it helps to think of it exactly like g
 
 ### The Basic Formula
 At its core, accuracy is just a ratio:
-\[Accuracy = \frac{Correct\ Predictions}{Total\ Predictions}\]
+$$Accuracy = \frac{Correct\ Predictions}{Total\ Predictions}$$
 
 If your model analyzes 100 emails and correctly identifies 90 of them (whether they are spam or not spam), the accuracy is 90%.
 
@@ -101,7 +101,7 @@ In machine learning, we usually break these "correct" and "incorrect" prediction
 * **False Negatives (FN)**: The model incorrectly predicted the negative class (e.g., predicted Not Spam, but it was actually a malicious phishing link).
 
 When you build models from scratch or use libraries like scikit-learn, the accuracy formula using these terms becomes:
-\[Accuracy = \frac{TP + TN}{TP + TN + FP + FN}\]
+$$Accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
 
 ### The "Trap" of Accuracy (Imbalanced Data)
 While accuracy is a great starting metric, it can be highly misleading if your dataset is imbalanced.
@@ -129,15 +129,15 @@ As mentioned, when dealing with imbalanced datasets, we rely on other metrics th
 
 *   **Precision (Positive Predictive Value)**
     *   *Question:* "Out of all the instances the model *predicted* as positive, how many were *actually* positive?"
-    *   *Formula:* \(\frac{TP}{TP + FP}\)
+    *   *Formula:* $\frac{TP}{TP + FP}$
     *   *Use Case:* When the cost of a False Positive is high (e.g., spam detection. You don't want a crucial email labeled as spam).
 
 *   **Recall (Sensitivity or True Positive Rate)**
     *   *Question:* "Out of all the *actual* positive instances, how many did the model correctly find?"
-    *   *Formula:* \(\frac{TP}{TP + FN}\)
+    *   *Formula:* $\frac{TP}{TP + FN}$
     *   *Use Case:* When the cost of a False Negative is high (e.g., cancer detection. It's better to get a false alarm than to miss a real cancer diagnosis).
 
 *   **F1-Score**
     *   *Question:* "What is the balance between Precision and Recall?"
-    *   *Formula:* \(2 \times \frac{Precision \times Recall}{Precision + Recall}\) (This is the harmonic mean of Precision and Recall).
+    *   *Formula:* $2 \times \frac{Precision \times Recall}{Precision + Recall}$ (This is the harmonic mean of Precision and Recall).
     *   *Use Case:* When you need a single metric to compare models, and you have an uneven class distribution where both false positives and false negatives are important to minimize.
