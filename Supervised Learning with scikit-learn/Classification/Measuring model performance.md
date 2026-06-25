@@ -113,3 +113,31 @@ Imagine you are building an Intrusion Detection System for a network:
 If you write a "dumb" model that simply predicts "Normal" 100% of the time, without actually doing any learning, it will be correct 99 times out of 100.
 
 Its Accuracy is 99%. However, the model is completely useless because it failed to detect the 1% of traffic that actually mattered (the attack). Because of this, data scientists often look at other metrics—like Precision, Recall, and F1-Score—when dealing with imbalanced datasets.
+
+### Example: Classification Accuracy Calculator
+
+Here is a visual representation of a confusion matrix using sample numbers:
+
+| Actual \ Predicted | Predicted Positive | Predicted Negative |
+| :--- | :--- | :--- |
+| **Actual Positive** | 40 (TP) | 5 (FN) |
+| **Actual Negative** | 10 (FP) | 45 (TN) |
+| **Total Samples (100)** | *Acc = (40 + 45) / 100 = 85%* | |
+
+### Beyond Accuracy: Precision, Recall, and F1-Score
+As mentioned, when dealing with imbalanced datasets, we rely on other metrics that focus specifically on how the model handles the positive class.
+
+*   **Precision (Positive Predictive Value)**
+    *   *Question:* "Out of all the instances the model *predicted* as positive, how many were *actually* positive?"
+    *   *Formula:* \(\frac{TP}{TP + FP}\)
+    *   *Use Case:* When the cost of a False Positive is high (e.g., spam detection. You don't want a crucial email labeled as spam).
+
+*   **Recall (Sensitivity or True Positive Rate)**
+    *   *Question:* "Out of all the *actual* positive instances, how many did the model correctly find?"
+    *   *Formula:* \(\frac{TP}{TP + FN}\)
+    *   *Use Case:* When the cost of a False Negative is high (e.g., cancer detection. It's better to get a false alarm than to miss a real cancer diagnosis).
+
+*   **F1-Score**
+    *   *Question:* "What is the balance between Precision and Recall?"
+    *   *Formula:* \(2 \times \frac{Precision \times Recall}{Precision + Recall}\) (This is the harmonic mean of Precision and Recall).
+    *   *Use Case:* When you need a single metric to compare models, and you have an uneven class distribution where both false positives and false negatives are important to minimize.
