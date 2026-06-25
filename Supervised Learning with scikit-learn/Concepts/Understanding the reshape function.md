@@ -50,3 +50,45 @@ You will see `.reshape(-1, 1)` constantly in machine learning.
 > [!NOTE]
 > * `X.reshape(-1, 1)`: Used when you have many rows but only one feature (turning a 1D list into a vertical 2D column).
 > * `X.reshape(1, -1)`: Used when you are trying to make a prediction on a single new observation (turning a 1D list of features into a single 2D row).
+
+### Why is `X` 2D and `y` 1D?
+Here is why there is a difference between how Scikit-Learn treats `X` and `y`:
+
+**The Feature Set (X) must be 2D:**
+Scikit-Learn assumes that you will usually have multiple features to make a prediction (e.g., predicting house price based on bedrooms, square footage, and zip code). Therefore, it mandates a 2-Dimensional table format:
+* Rows = Observations (each house)
+* Columns = Features (bedrooms, sq ft, etc.)
+
+**The Target (y) should be 1D:**
+For standard classification or regression, you are only ever trying to predict one single outcome per observation (e.g., just the price of the house, or just whether the email is spam).
+
+Because there is only one answer per row, Scikit-Learn expects a simple, flat 1-Dimensional list.
+
+Here is how they look side-by-side in your code:
+```python
+# X is 2-Dimensional (Notice the double brackets)
+X = [[45.07], 
+     [27.47], 
+     [41.38]] 
+
+# y is 1-Dimensional (A flat list of answers)
+y = [0, 1, 0] 
+```
+
+### A common warning you might see
+Because pandas makes it so easy to slice data, a very common mistake beginners make is accidentally making `y` 2-Dimensional by using double brackets:
+
+```python
+# WRONG: This makes y a 2D DataFrame/Array
+y = churn_df[["churn_status"]].values 
+```
+If you do this and pass it into `model.fit(X, y)`, the model will still run, but Scikit-Learn will yell at you with this warning:
+> `DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ).`
+
+**The Fix:**
+To keep Scikit-Learn happy and ensure `y` is 1D, just use single brackets when slicing your pandas series!
+
+```python
+# CORRECT: This keeps y as a 1D Series/Array
+y = churn_df["churn_status"].values
+```
