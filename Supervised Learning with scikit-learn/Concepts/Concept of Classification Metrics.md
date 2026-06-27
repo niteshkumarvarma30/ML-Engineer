@@ -93,3 +93,63 @@ Imagine a model predicting if a user will click on a specific ad.
 * A False Positive wastes ad budget showing the ad to the wrong person.
 * A False Negative loses potential revenue from a missed sale.
 * Because both mistakes hurt the business in different ways, you need a model that balances both. You would optimize for the F1 Score.
+
+---
+
+## The 3-Step Framework for Decoding Metric Questions
+
+When a question asks you to choose between Precision and Recall, it is actually asking you to perform a risk assessment. You can solve any of these questions by following these three steps in your head:
+
+**Step 1: Define the "Positive" Class**
+What is the model explicitly looking for?
+*Example:* Cancer, Spam, Fraud, a Good Sales Lead.
+
+**Step 2: Play out the False Positive (The "False Alarm")**
+Ask yourself: "What is the real-world consequence if the model says 'YES', but it is actually wrong?"
+* Are we wasting money?
+* Are we wasting someone's time?
+* Are we annoying a user?
+
+**Step 3: Play out the False Negative (The "Missed Detection")**
+Ask yourself: "What is the real-world consequence if the model says 'NO', but the thing was actually there?"
+* Will someone die?
+* Will the company be robbed?
+* Will a virus destroy the computer?
+
+### Applying the Framework to the Screenshot
+
+Let's test this framework on the exact options from your screenshot:
+
+**Option 1: The Cancer Model**
+* **Positive:** The patient has cancer.
+* **False Positive Cost:** A healthy patient is told they have cancer. They panic, get a secondary blood test, and find out they are actually fine. (Cost: A few hundred dollars and some stress).
+* **False Negative Cost:** A sick patient is told they are healthy. They go home, receive no treatment, and die. (Cost: A human life).
+* **Verdict:** The False Negative is infinitely worse. You must catch every single case. -> **RECALL**
+
+**Option 2: The Malware Classifier**
+* **Positive:** The computer program is a virus.
+* **False Positive Cost:** A perfectly safe video game is flagged as a virus. The user has to click "Ignore Warning" to play it. (Cost: 5 seconds of annoyance).
+* **False Negative Cost:** A virus is flagged as safe. It enters the network and deletes all the company's databases. (Cost: Millions of dollars).
+* **Verdict:** The False Negative is catastrophic. -> **RECALL**
+
+**Option 3: The Sales Lead Model**
+* **Positive:** The customer will buy the product.
+* **False Positive Cost:** The model says "They will buy!" but they actually won't. A sales rep spends 30 minutes calling them, wasting time that could have been spent on a real customer. Because the team has limited capacity, this wasted time is highly expensive. (Cost: High).
+* **False Negative Cost:** The model says "They won't buy," but they actually would have. Since the sales team has limited capacity anyway, they literally don't have enough time to call everyone. Missing one good lead doesn't matter because they have a backlog of other good leads to call. (Cost: Low).
+* **Verdict:** The False Positive (wasting limited time) is the bottleneck here. -> **PRECISION**
+
+---
+
+## Cheat Sheet: Keywords to look for in questions
+
+**Clues that point to PRECISION:**
+* "Limited capacity" / "Limited resources"
+* "Expensive to investigate"
+* "User annoyance" (e.g., spam filters, recommending bad movies)
+* "False alarms are costly"
+
+**Clues that point to RECALL:**
+* "Fatal" / "Life-threatening" (e.g., medical diagnoses)
+* "Catastrophic damage" (e.g., cybersecurity, malware)
+* "Fraud" / "Theft" (e.g., credit card fraud, shoplifting)
+* "Don't miss a single one"
